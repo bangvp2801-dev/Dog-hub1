@@ -9327,3 +9327,49 @@ v14:Notify({
     Title = "dog hub cati",
     Content = "Tải Xong",
     Duration = 10
+-- ========== BỔ SUNG MỤC SỰ KIỆN ==========
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() 
+local Window = Library.CreateLib("Dog Hub - Event", "BloodTheme")
+
+-- Tab Sự kiện
+local EventTab = Window:NewTab("🎉 Sự kiện")
+local EventSection = EventTab:NewSection("Blox Fruits Event")
+
+-- Nút farm RIP Event
+EventSection:NewButton("Auto Farm RIP Event", "Tự động đánh boss trong event RIP", function()
+    spawn(function()
+        while task.wait() do
+            pcall(function()
+                local boss = game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") -- boss event
+                if boss and boss:FindFirstChild("HumanoidRootPart") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                        boss.HumanoidRootPart.CFrame * CFrame.new(0, 5, 10)
+                    game:GetService("VirtualUser"):CaptureController()
+                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+                end
+            end)
+        end
+    end)
+end)
+
+-- Nút dịch chuyển đến khu vực Event
+EventSection:NewButton("Teleport Event Island", "Dịch chuyển tới đảo Event", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+        CFrame.new(-5350, 320, -2770) -- toạ độ Event Island (ví dụ)
+end)
+
+-- Bật/tắt thông báo event
+EventSection:NewToggle("Thông báo Boss Event", "Hiện thông báo khi boss RIP xuất hiện", function(state)
+    if state then
+        game:GetService("Workspace").Enemies.ChildAdded:Connect(function(mob)
+            if mob.Name == "rip_indra" then
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = "Sự kiện RIP!",
+                    Text = "Boss RIP Indra đã xuất hiện!",
+                    Duration = 8
+                })
+            end
+        end)
+    end
+end)
+-- =========================================
