@@ -1,3 +1,5 @@
+-- discord.gg/tboyroblox
+
 
 shared.LoaderTitle = "Đăng Ký Kênh dog hub cati";
 shared.LoaderKeyFrames = {
@@ -9325,29 +9327,3 @@ v14:Notify({
     Title = "dog hub cati",
     Content = "Tải Xong",
     Duration = 10
-
-});
-sự kiện mới= v15:AddTab({
-        Title = "sự kiện mới"
-});
--- Script: Event Boss Spawner (ServerScriptService)
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local BossTemplate = ReplicatedStorage:WaitForChild("EventBoss")
-
-while true do
-	wait(600) -- mỗi 10 phút event diễn ra
-
-	-- Tạo boss ở vị trí ngẫu nhiên
-	local spawnLocation = workspace.BossSpawn.Position
-	local boss = BossTemplate:Clone()
-	boss.Parent = workspace
-	boss:SetPrimaryPartCFrame(CFrame.new(spawnLocation))
-
-	-- Thông báo toàn server
-	game:GetService("StarterGui"):SetCore("SendNotification", {
-		Title = "⚔️ RIP Event!";
-		Text = "Một con boss sự kiện đã xuất hiện!";
-		Duration = 10;
-	})
-end
